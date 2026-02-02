@@ -5,22 +5,25 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Wedding;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        View::share('wedding', Wedding::first());
+        try {
+            if (Schema::hasTable('weddings')) {
+                View::share('wedding', Wedding::first());
+            } else {
+                View::share('wedding', null);
+            }
+        } catch (\Throwable $e) {
+            View::share('wedding', null);
+        }
     }
 }

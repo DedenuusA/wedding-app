@@ -31,7 +31,7 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('kirim.wa')" :active="request()->routeIs('kirim.wa')">
-                        {{ __('Kirim WhatsApp') }}
+                        {{ __('Send WhatsApp') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -85,8 +85,26 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('wedding.edit')" :active="request()->routeIs('wedding.edit')">
+                {{ __('Wedding') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('admin.rsvps')" :active="request()->routeIs('admin.rsvps')">
+                {{ __('Rsvp') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('wedding.link',['slug' => $wedding->slug])" :active="request()->routeIs('wedding.link',['slug' => $wedding->slug])">
+                {{ __('Link Wedding') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('kirim.wa')" :active="request()->routeIs('kirim.wa')">
+                {{ __('Send WhatsApp') }}
             </x-responsive-nav-link>
         </div>
 

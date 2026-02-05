@@ -21,7 +21,6 @@
         <link href="{{ asset('mr&mrs/lib/animate/animate.min.css')}}" rel="stylesheet">
         <link href="{{ asset('mr&mrs/lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">
 
-
         <!-- Customized Bootstrap Stylesheet -->
         <link href="{{ asset('mr&mrs/css/bootstrap.min.css')}}" rel="stylesheet">
 
@@ -44,15 +43,15 @@
                         </button>
                         <div class="collapse navbar-collapse py-3" id="navbarCollapse">
                             <div class="navbar-nav mx-auto border-top">
-                                <a href="{{ asset('mr&mrs/#weddingHome')}}" class="nav-item nav-link active">Home</a>
-                                <a href="{{ asset('mr&mrs/#weddingAbout')}}" class="nav-item nav-link">About</a>
-                                <a href="{{ asset('mr&mrs/#weddingStory')}}" class="nav-item nav-link">Story</a>
-                                <a href="{{ asset('mr&mrs/#weddingTimeline')}}" class="nav-item nav-link">Timeline</a>
-                                <a href="{{ asset('mr&mrs/#weddingGallery')}}" class="nav-item nav-link">Gallery</a>
-                                <a href="{{ asset('mr&mrs/#weddingRsvp')}}" class="nav-item nav-link">RSVP</a>
+                                <a href="#" class="nav-item nav-link active">Home</a>
+                                <a href="#weddingAbout" class="nav-item nav-link">About</a>
+                                <a href="#weddingStory" class="nav-item nav-link">Story</a>
+                                <a href="#weddingTimeline" class="nav-item nav-link">Timeline</a>
+                                <a href="#weddingGallery" class="nav-item nav-link">Gallery</a>
+                                <a href="#weddingRsvp" class="nav-item nav-link">RSVP</a>
                             </div>
                             <div class="d-flex align-items-center flex-nowrap pt-xl-0">
-                                <a href="{{ asset('mr&mrs/#weddingRsvp')}}" class="btn btn-primary btn-primary-outline-0 py-2 px-4 ms-4">Book Attendance</a>
+                                <a href="#weddingRsvp" class="btn btn-primary btn-primary-outline-0 py-2 px-4 ms-4">Book Attendance</a>
                             </div>
                         </div>
                     </nav>
@@ -60,8 +59,6 @@
             </div>
         </div>
         <!-- Navbar End -->
-
-
 
         <!-- Carousel Start -->
         <div class="container-fluid carousel-header px-0">
@@ -81,10 +78,10 @@
                                 </div>
                                 <h1 class="display-1 text-capitalize text-white mb-3">{{ $wedding->groom_name }} <i class="fa fa-heart text-primary"></i> {{ $wedding->bride_name }}</h1>
                                 <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-5" style="border-style: double;">
-                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">June 28 2024</h4>
+                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</h4>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <a class="btn btn-primary btn-primary-outline-0 py-3 px-5" href="#">RSVP Now</a>
+                                    <a class="btn btn-primary btn-primary-outline-0 py-3 px-5" href="#weddingRsvp">RSVP Now</a>
                                 </div>
                             </div>
                         </div>
@@ -98,10 +95,10 @@
                                 </div>
                                 <h1 class="display-1 text-capitalize text-white mb-3">{{ $wedding->groom_name }} <i class="fa fa-heart text-primary"></i> {{ $wedding->bride_name }}</h1>
                                 <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
-                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">{{ $wedding->date }}</h4>
+                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</h4>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center">
-                                    <a class="btn btn-primary btn-primary-outline-0 py-3 px-5" href="#">RSVP Now</a>
+                                    <a class="btn btn-primary btn-primary-outline-0 py-3 px-5" href="#weddingRsvp">RSVP Now</a>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +112,7 @@
                                 </div>
                                 <h1 class="display-1 text-capitalize text-white mb-3">{{ $wedding->groom_name }} <i class="fa fa-heart text-primary"></i> {{ $wedding->bride_name }}</h1>
                                 <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
-                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">{{ $wedding->date }}</h4>
+                                    <h4 class="text-white text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</h4>
                                 </div>
                                 <div class="d-flex align-items-center justify-content-center">
                                     <a class="btn btn-primary btn-primary-outline-0 py-3 px-5" href="#">RSVP Now</a>
@@ -156,9 +153,8 @@
                             <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.3s">
                                 <div class="d-flex">
                                     <div class="text-end my-auto pe-4">
-                                        <h3 class="text-primary mb-3">Evelyn</h3>
-                                        <p class="text-dark mb-0" style="line-height: 30px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                        </p>
+                                        <h3 class="text-primary mb-3">{{ $wedding->bride_name }}</h3>
+                                        <p class="text-dark mb-0" style="line-height: 30px;"> Putri Dari Ayah {{ $wedding->bride_parent }}
                                     </div>
                                     <img src="{{asset('mr&mrs/img/bride.jpg')}}" class="img-fluid img-border" alt="">
                                 </div>
@@ -172,9 +168,8 @@
                                 <div class="d-flex">
                                     <img src="{{asset('mr&mrs/img/Groom.jpg')}}" class="img-fluid img-border" alt="">
                                     <div class="my-auto ps-4">
-                                        <h3 class="text-primary mb-3">Anthony</h3>
-                                        <p class="text-dark mb-0" style="line-height: 30px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                        </p>
+                                        <h3 class="text-primary mb-3">{{ $wedding->groom_name }}</h3>
+                                        <p class="text-dark mb-0" style="line-height: 30px;"> Putra Dari Ibu {{ $wedding->groom_parent }}
                                     </div>
                                 </div>
                             </div>
@@ -184,106 +179,6 @@
             </div>
         </div>
         <!-- Hello! End -->
-
-
-        <!-- About Start -->
-        <div class="container-fluid position-relative overflow-hidden bg-secondary py-5">
-            <img src="{{asset('mr&mrs/img/bg-flower.png')}}" class="img-fluid position-absolute top-0" style="right: -15px; transform: rotate(270deg); opacity: 0.5;" alt="">
-            <img src="{{asset('mr&mrs/img/bg-flower.png')}}" class="img-fluid position-absolute" style="bottom: 10px; left: -15px; transform: rotate(90deg); opacity: 0.5;" alt="">
-            <div class="container py-5 position-relative">
-                <div class="row g-5 align-items-center">
-                    <div class="col-xl-6 wow fadeIn" data-wow-delay="0.1s">
-                        <div class="border-white bg-primary" style="border-style: double;">
-                            <img src="{{asset('mr&mrs/img/about-1.jpg')}}" class="img-fluid w-100" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <div class="wow fadeIn" data-wow-delay="0.3s">
-                            <h5 class="text-uppercase text-primary fw-bold mb-4">About Us</h5>
-                            <h1 class="display-5 text-white mb-4">We Make Your Every Moment</h1>
-                            <p class="text-white fs-5 mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                            </p>
-                            <div class="tab-class bg-primary p-4">
-                                <ul class="nav d-flex mb-4">
-                                    <li class="nav-item">
-                                        <a class="d-flex py-2 text-center bg-white active" data-bs-toggle="pill" href="#">
-                                            <span class="text-dark" style="width: 150px;">Bride Info</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="d-flex py-2 mx-3 text-center bg-white" data-bs-toggle="pill" href="#">
-                                            <span class="text-dark" style="width: 150px;">Groom info</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="tab-1" class="tab-pane fade show p-0 active">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="d-flex">
-                                                    <div class="me-4">
-                                                        <img src="{{asset('mr&mrs/img/bride.jpg')}}" class="img-fluid w-100 img-border" alt="">
-                                                    </div>
-                                                    <div class="text-start my-auto">
-                                                        <h5 class="text-white fw-bold">Evelyn</h5>
-                                                        <p class="text-white mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                        </p>
-                                                        <div class="d-flex">
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-2"><i class="fab fa-facebook-f"></i></a>
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-2"><i class="fab fa-twitter"></i></a>
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-2"><i class="fab fa-instagram"></i></a>
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-0"><i class="fab fa-linkedin-in"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="tab-2" class="tab-pane fade show p-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="d-flex">
-                                                    <div class="me-4">
-                                                        <img src="{{asset('mr&mrs/img/Groom.jpg')}}" class="img-fluid w-100 img-border" alt="">
-                                                    </div>
-                                                    <div class="text-start my-auto">
-                                                        <h5 class="text-white fw-bold">Anthony</h5>
-                                                        <p class="text-white mb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                                        </p>
-                                                        <div class="d-flex">
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-2"><i class="fab fa-facebook-f"></i></a>
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-2"><i class="fab fa-twitter"></i></a>
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-2"><i class="fab fa-instagram"></i></a>
-                                                            <a href="#" class="btn btn-primary btn-primary-outline-0 btn-sm-square me-0"><i class="fab fa-linkedin-in"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex mt-5">
-                                <div class="d-flex align-items-center justify-content-center flex-shrink-0">
-                                    <a href="#" class="btn btn-primary btn-primary-outline-0 py-3 px-4">Read More</a>
-                                </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="d-inline-block ms-4 me-3">
-                                        <i class="fa fa-phone fa-2x text-success border border-2 border-white p-2"></i>
-                                    </div>
-                                    <div class="d-flex flex-column flex-nowrap">
-                                        <h5 class="text-dark fw-bold mb-2">Call Us Anytime</h5>
-                                        <h4 class="text-primary mb-0">+123 456 7890</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- About End -->
-
 
         <!-- Story Start -->
         <div class="container-fluid story position-relative py-5" id="weddingStory">
@@ -373,7 +268,7 @@
                 <div class="wedding-date text-center bg-light p-5" style="border-style: double !important; border: 15px solid rgba(253, 93, 93, 0.5);">
                     <div class="wedding-date-content">
                         <div class="d-inline-block border-end-0 border-start-0 border-secondary p-2 mb-4" style="border-style: double;">
-                            <h4 class="text-dark text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">June 28, 2024</h4>
+                            <h4 class="text-dark text-uppercase fw-bold mb-0" style="letter-spacing: 3px;">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</h4>
                         </div>
                         <h1 class="display-4">We Are Getting Married</h1>
                         <p class="text-dark fs-5">Niloy Hotel New York , 123 West 23th Street, NY</p>
@@ -501,7 +396,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -516,7 +411,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -531,7 +426,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -546,7 +441,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -561,7 +456,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -576,7 +471,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -591,7 +486,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -606,7 +501,7 @@
                             </div>
                             <div class="gallery-overlay bg-light border-secondary border-top-0 p-4" style="border-style: double;">
                                 <h5>Wedding on the beach</h5>
-                                <p class="text-dark mb-0">June 28, 2024</p>
+                                <p class="text-dark mb-0">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}</p>
                             </div>
                         </div>
                     </div>
@@ -619,248 +514,6 @@
         <!-- Gallery end -->
 
 
-        <!--- Bridesmaids & Groomsmen start -->
-        <div class="container-fluid team position-relative py-5">
-            <div class="position-absolute" style="bottom: -80px; right: 0;">
-                <img src="{{asset('mr&mrs/img/tamp-bg-1.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="position-absolute" style="bottom: -90px; left: 0; transform: rotate(150deg);">
-                <img src="{{asset('mr&mrs/img/tamp-bg-1.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="position-absolute" style="top: -100px; right: 0;">
-                <img src="{{asset('mr&mrs/img/tamp-bg-1.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="position-absolute" style="top: -80px; left: 0; transform: rotate(150deg);">
-                <img src="{{asset('mr&mrs/img/tamp-bg-1.png')}}" class="img-fluid" alt="">
-            </div>
-            <div class="container py-5">
-                <div class="mb-5 text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                    <h1 class="display-2 text-dark">Bridesmaids & Groomsmen</h1>
-                    <p class="fs-5 text-dark">Lorem Ipsum is simply dummy text of the printing and typesetting Ipsum is simply dummy text of the printing and typesetting Ipsum is simply dummy text of the printing and typesetting</p>
-                </div>
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/bridesmaid-1.p')}}ng" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">Amelia Alex</h5>
-                                    <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/bridesmaid-tea')}}m-2.png" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">Amelia Alex</h5>
-                                    <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/bridesmaid-3.p')}}ng" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">Amelia Alex</h5>
-                                    <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/bridesmaid-4.p')}}ng" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">Amelia Alex</h5>
-                                    <h5 class="text-white fs-5 mb-0">Bridesmaid</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/Groomsmen-1.pn')}}g" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">David John</h5>
-                                    <h5 class="text-white fs-5 mb-0">Groomsmen</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/Groomsmen-2.pn')}}g" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">David John</h5>
-                                    <h5 class="text-white fs-5 mb-0">Groomsmen</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/Groomsmen-3.pn')}}g" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">David John</h5>
-                                    <h5 class="text-white fs-5 mb-0">Groomsmen</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <div class="team-img-main">
-                                    <img src="{{asset('mr&mrs/img/Groomsmen-4.pn')}}g" class="img-fluid w-100" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -30px; left: -100px; transform: rotate(50deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                                <div class="team-img-bg position-absolute" style="bottom: -40px; right: -120px; transform: rotate(-30deg); z-index: 1;">
-                                    <img src="{{asset('mr&mrs/img/team-1-bg.png')}}" class="img-fluid" alt="">
-                                </div>
-                            </div>
-                            <div class="team-content">
-                                <div class="d-flex flex-column p-4">
-                                    <h5 class="text-white display-6 mb-1">David John</h5>
-                                    <h5 class="text-white fs-5 mb-0">Groomsmen</h5>
-                                </div>
-                            </div>
-                            <div class="team-social d-flex flex-column">
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-light btn-light-outline-0 mb-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a class="btn btn-light btn-light-outline-0" href="#"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Bridesmaids & Groomsmen End -->
-
-
         <!-- RSVP Form Start -->
         <div class="container-fluid RSVP-form py-5" id="weddingRsvp">
             <div class="container py-5">
@@ -871,87 +524,48 @@
                     <div class="col-md-10">
                         <div class="p-5 border-secondary position-relative" style="border-style: double;">
                             <div class="fw-bold text-primary bg-white d-flex align-items-center justify-content-center position-absolute border-secondary p-2 wow fadeIn" data-wow-delay="0.1s" style="width: 75%; border-style: double; top: 0; left: 50%; transform: translate(-50%, -50%);">
-                                Kindly respond by June 25, 2024 we look forward to celebrating with you!
+                                Kindly respond by {{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }} we look forward to celebrating with you!
                             </div>
-                            <form>
+                            <form method="POST" action="{{ route('rsvp.store') }}">
+                                @csrf
+                                <input type="hidden" name="wedding_slug" value="{{ $wedding->slug }}">
                                 <div class="row gx-4 gy-3">
                                     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">First Name</label>
-                                            <input type="text" class="form-control py-3 border-0" id="Examplename" placeholder="First Name">
-                                          </div>
-                                    </div>
-                                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">Last Name</label>
-                                            <input type="text" class="form-control py-3 border-0" id="Examplename" placeholder="Last Name">
-                                          </div>
-                                    </div>
-                                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">Enter Your Email</label>
-                                            <input type="email" class="form-control py-3 border-0" id="Examplename" placeholder="Enter Your Email">
-                                          </div>
-                                    </div>
-                                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="form-group">
-                                            <label for="Examplename" class="form-label text-dark">Enter Your Phone</label>
-                                            <input type="text" class="form-control py-3 border-0" id="Examplename" placeholder="Enter Your Phone">
+                                            <label for="Examplename" class="form-label text-dark">Name</label>
+                                            <input type="text" class="form-control py-3 border-0 bg-white text-dark" id="Examplename" placeholder="Input Name" name="name" required>
                                           </div>
                                     </div>
                                     <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
-                                            <label for="exampleselect" class="form-label text-dark">Number Of Guests</label>
-                                            <select class="form-control bg-white text-dark py-3 border-0" id="exampleselect" placeholder="Number Of Guests">
-                                              <option>Only Me</option>
-                                              <option>02 Guests</option>
-                                              <option>03 Guests</option>
-                                              <option>04 Guests</option>
+                                            <label for="exampleselect" class="form-label text-dark">Konfirmasi Kehadiran</label>
+                                            <select class="form-control bg-white text-dark py-3 border-0" name="attendance" id="exampleselect" placeholder="Number Of Guests">
+                                            <option value="hadir">Hadir</option>
+                                            <option value="tidak_hadir">Tidak Hadir</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
                                         <div class="form-group">
                                             <label for="exampletextarea" class="form-label text-dark">Message</label>
-                                            <textarea name="text" class="form-control border-0" id="exampletextarea" cols="30" rows="5" placeholder="Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="text-center border border-secondary p-4 my-4 position-relative">
-                                            <div class="fw-bold text-primary bg-white d-flex align-items-center justify-content-center position-absolute border-secondary p-2" style="width: 50%; border-style: double; top: 0; left: 50%; transform: translate(-50%, -50%);">
-                                                Will you be attending?
-                                            </div>
-                                            <div class="mt-4">
-                                                <div class="row g-4">
-                                                    <div class="col-lg-6">
-                                                        <div class="d-flex justify-content-center">
-                                                            <div class="form-check d-flex">
-                                                                <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                <label class="form-check-label text-dark" for="flexRadioDefault1">
-                                                                    Accepts With Pleasure!
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="d-flex justify-content-center">
-                                                            <div class="form-check d-flex">
-                                                                <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                <label class="form-check-label text-dark" for="flexRadioDefault1">
-                                                                    Declines With Regret
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <textarea name="message" class="form-control border-0 bg-white text-dark py-3 border-0" id="exampletextarea" cols="30" rows="5" placeholder="Sampaikan"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12 text-center wow fadeIn" data-wow-delay="0.1s">
-                                        <button class="btn btn-primary btn-primary-outline-0 py-3 px-5">Submit Now</button>
+                                        <button class="btn btn-primary btn-primary-outline-0 py-3 px-5">Kirim RSVP</button>
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                         <div class="p-5 border-secondary position-relative mt-2" style="border-style: double;">
+                            <h2 class="text-3xl text-yellow-400 text-center mb-8">Guest Messages</h2>
+                                @forelse($messages as $msg)
+                                    <div class="glass rounded">
+                                    <p class="font-bold text-dark">{{ $msg->kolom1 }} - {{ $msg->message }}</p>
+                                    </div>
+                                    @empty
+                                    <p class="text-center opacity-60 text-dark">Belum ada ucapan</p>
+                                @endforelse
                         </div>
                     </div>
                 </div>
@@ -967,7 +581,7 @@
                         <div class="p-4 border-secondary" style="border-style: double;">
                             <h4>When</h4>
                             <p class="mb-0 text-dark">
-                                28. June 2024. at 7 o’clock in the evening
+                                {{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}. at {{$wedding->time}} in the evening
                             </p>
                         </div>
                     </div>
@@ -975,7 +589,7 @@
                         <div class="p-4 border-secondary" style="border-style: double;">
                             <h4>Where</h4>
                             <p class="mb-0 text-dark">
-                                Niloy Hotel, 123 ranking Street, New York. 
+                                {{$wedding->location}}. 
                             </p>
                         </div>
                     </div>
@@ -997,68 +611,15 @@
         </div>
         <!-- RSVP Form End -->
 
-
-        <!-- Footer Start -->
-        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5 justify-content-center">
-                    <div class="col-lg-4 text-start">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Links</h4>
-                            <a href="#" class="btn-link"> About</a>
-                            <a href="#" class="btn-link"> Gallery</a>
-                            <a href="#" class="btn-link"> Story</a>
-                            <a href="#" class="btn-link"> Timeline</a>
-                            <a href="#" class="btn-link"> RSVP</a>
-                            <a href="#" class="btn-link"> Contact Us</a>
-                            <a href="#" class="btn-link"> Wsedding-date</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 text-center">
-                        <div class="footer-item">
-                            <h4 class="mb-4 text-white">Mr<strong class="text-primary">&</strong>Mrs</h4>
-                            <p class="text-white">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in tempor dui, non consectetur enim.
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                            </p>
-                            <div class="btn-link d-flex justify-content-center">
-                                <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-2"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-2"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-2"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="btn btn-md-square btn-light btn-light-outline-0 me-0"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 text-end">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Follow Us</h4>
-                            <a href="#" class="btn-link"> Faceboock</a>
-                            <a href="#" class="btn-link"> Instagram</a>
-                            <a href="#" class="btn-link"> Twitter</a>
-                            <h4 class="my-4 text-white">Contact Us</h4>
-                            <a href="#" class="btn-link"><i class="fas fa-envelope text-secondary me-2"></i> info@example.com</a>
-                            <a href="#" class="btn-link"><i class="fas fa-phone text-secondary me-2"></i> (+012) 3456 7890 123</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-        
-
-
-
         <!-- Copyright Start -->
         <div class="container-fluid copyright py-4">
             <div class="container">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-6 text-center text-md-start mb-md-0">
-                        <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right reserved.</span>
+                        <span class="text-light"><a href="https://wedding-app-production-5f44.up.railway.app/"><i class="fas fa-copyright text-light me-2"></i>Wedding</a>, All right reserved.</span>
                     </div>
                     <div class="col-md-6 text-center text-md-end text-white">
-                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
+                        Distributed By <a href="#">Annchyer</a>
                     </div>
                 </div>
             </div>

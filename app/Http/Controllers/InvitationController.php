@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Wedding;
 use App\Models\Rsvps;
+use Illuminate\Support\Facades\Auth;
 
 class InvitationController extends Controller
 {
    public function show($slug)
     {
-        $wedding = Wedding::where('slug', $slug)->firstOrFail();
+        
+        $wedding = Wedding::where('kolom3', Auth::user()->id)->where('slug', $slug)->firstOrFail();
         $view = 'themes.' . $wedding->theme . '.index';
         $guestName = request('to');
-        $messages = Rsvps::whereNotNull('message')
+        $messages = Rsvps::where('kolom3', Auth::user()->id)->whereNotNull('message')
             ->latest()
             ->take(20)
             ->get();

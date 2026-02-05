@@ -81,15 +81,9 @@ Pukul {{ \Carbon\Carbon::parse($wedding->time)->format('H:i') }}
 <!-- GALLERY -->
 <section class="py-16 bg-gray-900 text-center">
 <h2 class="text-3xl text-yellow-400 mb-10">Gallery</h2>
-
-<div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-<img src="https://via.placeholder.com/300" class="rounded shadow">
-<img src="https://via.placeholder.com/300" class="rounded shadow">
-<img src="https://via.placeholder.com/300" class="rounded shadow">
-<img src="https://via.placeholder.com/300" class="rounded shadow">
-<img src="https://via.placeholder.com/300" class="rounded shadow">
-<img src="https://via.placeholder.com/300" class="rounded shadow">
-</div>
+@foreach(json_decode(optional($wedding)->kolom2 ?? '[]') as $img)
+<img src="{{ asset('storage/'.$img) }}" class="w-32 inline-block m-1">
+@endforeach
 </section>
 
 <!-- MAP -->
@@ -123,9 +117,9 @@ loading="lazy">
 class="max-w-md mx-auto">
 @csrf
 
-<input type="text" name="name"
-placeholder="Nama"
-class="w-full p-2 mb-2 text-black">
+<input type="hidden" name="wedding_slug" value="{{ $wedding->slug }}">
+
+<input type="text" name="name" placeholder="Nama" class="w-full p-2 mb-2 text-black">
 
 <select name="attendance"
 class="w-full p-2 mb-2 text-black">
@@ -154,7 +148,7 @@ Guest Messages
 
 @forelse($messages as $msg)
 <div class="glass p-4 mb-4 rounded">
-<p class="font-bold">{{ $msg->name }}</p>
+<p class="font-bold">{{ $msg->kolom1 }}</p>
 <p class="opacity-80">{{ $msg->message }}</p>
 </div>
 @empty

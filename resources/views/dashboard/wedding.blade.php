@@ -57,23 +57,37 @@ placeholder="Cerita cinta"
 class="border p-2 w-full mb-2">{{ $wedding->story ?? '' }}</textarea>
 
 <select name="theme" class="border p-2 w-full mb-2">
-<option value="classic" {{ $wedding->theme=='classic'?'selected':'' }}>
+<option value="" selected disabled>--Pilih Template--</option>
+<option value="classic" {{ optional($wedding)->theme == 'classic' ? 'selected' : '' }}>
 Classic Romantic
 </option>
-<option value="modern" {{ $wedding->theme=='modern'?'selected':'' }}>
+<option value="modern" {{ optional($wedding)->theme == 'modern' ? 'selected' : '' }}>
 Modern Minimalist
 </option>
-<option value="mr&mrs" {{ $wedding->theme=='mr&mrs'?'selected':'' }}>
+<option value="mr&mrs" {{ optional($wedding)->theme == 'mr&mrs' ? 'selected' : '' }}>
 Mr & Mrs
 </option>
 </select>
 
-<label class="block mb-1 font-semibold">Musik Background</label>
-<input type="file" name="music" class="mb-4">
+<!-- <input type="text" name="bank_name" value="{{ optional($wedding)->bank_name }}" class="border p-2 w-full mb-2" placeholder="Nama Bank">
+<input type="text" name="bank_account" value="{{ optional($wedding)->bank_account }}" class="border p-2 w-full mb-2" placeholder="No Rekening">
+<input type="text" name="bank_holder" value="{{ optional($wedding)->bank_holder }}" class="border p-2 w-full mb-2" placeholder="Atas Nama"> -->
 
-@if($wedding->music_url)
+<label class="block mb-1 font-semibold">QRIS</label>
+<input type="file" name="qris" class="border p-2 w-full mb-2" class="border p-2 w-full mb-2">
+@if(optional($wedding)->qris)
+<img src="{{ asset('storage/'.$wedding->qris) }}" class="w-40 mb-2">
+@endif
+
+<label class="block mb-1 font-semibold">Gallery Foto</label>
+<input type="file" name="gallery[]" multiple class="border p-2 w-full mb-2">
+
+<label class="block mb-1 font-semibold">Musik Background</label>
+<input type="file" name="music" class="mb-4" class="border p-2 w-full mb-2">
+
+@if(optional($wedding)->music_url)
 <p class="text-sm text-gray-500 mb-2">
-Musik saat ini: {{ $wedding->music_url }}
+Musik saat ini: {{ optional($wedding)->music_url}}
 </p>
 @endif
 

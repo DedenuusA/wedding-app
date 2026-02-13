@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Wedding;
+use App\Models\MasterBank;
+use App\Models\Bank;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -13,8 +15,8 @@ class WeddingController extends Controller
     public function edit()
     {
         $wedding = Wedding::where('kolom3', Auth::user()->id)->first();
-
-        return view('dashboard.wedding', compact('wedding'));
+        $banks = MasterBank::all();
+        return view('dashboard.wedding', compact('wedding','banks'));
     }
 
     public function update(Request $request)
@@ -57,10 +59,21 @@ class WeddingController extends Controller
         $data['kolom3'] = Auth::check() ? Auth::id() : null;
         // auto slug
         $data['slug'] = Str::slug(
-            $data['groom_name'].'-'.$data['bride_name']
+            $data['bride_name'].'-'.$data['groom_name']
         );
-
         $wedding->update($data);
+        
+        $wedding->banks()->delete();
+        if ($request->banks) {
+            foreach ($request->banks['name'] as $i => $name) {
+                if (!$name) continue;
+                $wedding->banks()->create([
+                    'bank_name' => $name,
+                    'account_number' => $request->banks['number'][$i] ?? '',
+                    'account_holder' => $request->banks['holder'][$i] ?? '',
+                ]);
+            }
+        }
 
         return back()->with('success', 'Wedding updated!');
     }

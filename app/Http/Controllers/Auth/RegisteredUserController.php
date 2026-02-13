@@ -47,7 +47,6 @@ class RegisteredUserController extends Controller
             'kolom3' => $user->id,
             'slug' => 'wedding-'.$user->id,
         ]);
-
         event(new Registered($user));
 
         Auth::login($user);

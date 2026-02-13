@@ -28,6 +28,7 @@ class RsvpController extends Controller
             'message' => $request->message,
             'kolom1' => $request->name,
             'kolom3' => $wedding->kolom3,
+            'kolom2' =>$wedding->slug,
         ]);
 
         return back()->with('success', 'Terima kasih sudah konfirmasi!');

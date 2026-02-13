@@ -23,4 +23,10 @@ class Wedding extends Model
         'kolom2',
         'kolom3',
     ];
+
+    public function banks()
+    {
+        return $this->hasMany(Bank::class);
+    }
+
 }

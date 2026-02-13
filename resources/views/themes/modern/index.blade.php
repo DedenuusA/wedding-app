@@ -1,167 +1,256 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>{{ $wedding->groom_name }} & {{ $wedding->bride_name }}</title>
-<script src="https://cdn.tailwindcss.com"></script>
 
-<style>
-body { scroll-behavior: smooth; }
-.glass {
-background: rgba(255,255,255,0.1);
-backdrop-filter: blur(10px);
-border: 1px solid rgba(255,255,255,0.2);
-}
-</style>
+<head>
+    <title>{{ $wedding->bride_name }} & {{ $wedding->groom_name }}</title>
+    <link rel="icon" type="image/png" href="/images/favicon1.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
 
 <body class="bg-black text-white">
 
-<!-- MUSIC -->
-<button onclick="playMusic()"
-class="fixed bottom-6 right-6 bg-yellow-500 text-black px-4 py-3 rounded-full shadow-xl z-50">
-♪ Music
-</button>
+    <!-- MUSIC -->
+    <button onclick="playMusic()"
+        class="fixed bottom-6 right-6 bg-yellow-500 text-black px-4 py-3 rounded-full shadow-xl z-50">
+        ♪ Music
+    </button>
 
-<audio id="bgmusic" loop>
-<source src="{{ asset('storage/'.$wedding->music_url) }}">
-</audio>
+    <audio id="bgmusic" loop>
+        <source src="{{ asset('storage/' . $wedding->music_url) }}">
+    </audio>
 
-<!-- HERO -->
-<section class="min-h-screen flex flex-col justify-center items-center text-center p-6 bg-gradient-to-b from-black to-gray-900">
+    <!-- HERO -->
+    <section
+        class="min-h-screen flex flex-col justify-center items-center text-center p-6 bg-gradient-to-b from-black to-gray-900">
 
-@if($guestName)
-<p class="mb-3 text-yellow-400">
-Dear {{ $guestName }}
-</p>
-@endif
+        @if ($guestName)
+            <p class="mb-3 text-yellow-400">
+                Dear {{ $guestName }}
+            </p>
+        @endif
 
-<h1 class="text-5xl font-bold mb-4 tracking-widest">
-{{ $wedding->groom_name }}
-<span class="text-yellow-400">&</span>
-{{ $wedding->bride_name }}
-</h1>
+        <h1 class="text-5xl font-bold mb-4 tracking-widest">
+            {{ $wedding->bride_name }}
+            <span class="text-yellow-400">&</span>
+            {{ $wedding->groom_name }}
+        </h1>
 
-<p class="text-lg opacity-80">
-{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}
-</p>
+        <h3 class="text-yellow-200 opacity-80">We Are Getting Merried</h3>
 
-<a href="#details"
-class="mt-8 border border-yellow-400 px-6 py-3 hover:bg-yellow-400 hover:text-black transition">
-View Invitation
-</a>
+        <p class="text-lg opacity-80">
+            {{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }}
+        </p>
 
-</section>
+        <a href="#details"
+            class="mt-8 border border-yellow-400 px-6 py-3 hover:bg-yellow-400 hover:text-black transition">
+            View Invitation
+        </a>
 
-<!-- DETAILS -->
-<section id="details" class="py-20 px-6 max-w-3xl mx-auto text-center">
+    </section>
 
-<h2 class="text-3xl mb-6 text-yellow-400">Wedding Details</h2>
+    <!-- DETAILS -->
+    <section id="details" class="py-20 px-6 max-w-3xl mx-auto text-center">
 
-<div class="glass p-6 rounded-xl mb-8">
-<p>Putra dari {{ $wedding->groom_parent }}</p>
-<p>Putri dari {{ $wedding->bride_parent }}</p>
+        <h2 class="text-3xl mb-6 text-yellow-400">Wedding Details</h2>
 
-<p class="mt-4">
-Pukul {{ \Carbon\Carbon::parse($wedding->time)->format('H:i') }}
-</p>
+        <div class="glass p-6 rounded-xl mb-8">
+            <p>Putri dari {{ $wedding->bride_parent }}</p>
+            <p>Putra dari {{ $wedding->groom_parent }}</p>
 
-<p class="font-semibold mt-2">
-{{ $wedding->location }}
-</p>
-</div>
+            <p class="mt-4">{{ \Carbon\Carbon::parse($wedding->date)->format('d F Y') }} |
+                Pukul {{ \Carbon\Carbon::parse($wedding->time)->format('H:i') }}
+            </p>
 
-@if($wedding->story)
-<div class="glass p-6 rounded-xl mb-10">
-<p>{{ $wedding->story }}</p>
-</div>
-@endif
+            <p class="font-semibold mt-2">
+                {{ $wedding->location }}
+            </p>
+        </div>
 
-</section>
+        @if ($wedding->story)
+            <div class="glass p-6 rounded-xl mb-10">
+                <p>{{ $wedding->story }}</p>
+            </div>
+        @endif
 
-<!-- GALLERY -->
-<section class="py-16 bg-gray-900 text-center">
-<h2 class="text-3xl text-yellow-400 mb-10">Gallery</h2>
-@foreach(json_decode(optional($wedding)->kolom2 ?? '[]') as $img)
-<img src="{{ asset('storage/'.$img) }}" class="w-32 inline-block m-1">
-@endforeach
-</section>
+    </section>
 
-<!-- MAP -->
-<section class="py-16 text-center">
-<h2 class="text-3xl text-yellow-400 mb-6">Location</h2>
+    <!-- GALLERY -->
+    <section class="py-16 bg-gray-900 text-center">
+        <h2 class="text-3xl text-yellow-400 mb-10">Gallery</h2>
+        @foreach (json_decode(optional($wedding)->kolom2 ?? '[]') as $img)
+            <img src="{{ asset('storage/' . $img) }}" class="w-32 inline-block m-1">
+        @endforeach
+    </section>
 
-<div class="max-w-3xl mx-auto">
-<iframe
-src="{{ $wedding->maps_link }}"
-width="100%"
-height="350"
-style="border:0;"
-allowfullscreen
-loading="lazy">
-</iframe>
-</div>
-</section>
+    <section class="py-16 text-center text-white">
 
-<!-- RSVP -->
-<section class="py-20 bg-gray-900 px-6 text-center">
+        <h2 class="text-3xl text-yellow-400 mb-10">
+            Wedding Gift
+        </h2>
 
-<h2 class="text-3xl text-yellow-400 mb-6">RSVP</h2>
+        {{-- QRIS --}}
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+            @if (optional($wedding)->kolom1)
+                <div class="mb-10">
+                    <img src="{{ asset('storage/' . $wedding->kolom1) }}" class="w-32 mx-auto rounded-xl shadow-lg mb-3">
+                    <p class="text-gray-300">Scan QRIS To Give Gifts</p>
+                </div>
+            @endif
 
-@if(session('success'))
-<div class="bg-green-700 p-3 mb-4 rounded">
-{{ session('success') }}
-</div>
-@endif
 
-<form method="POST" action="{{ route('rsvp.store') }}"
-class="max-w-md mx-auto">
-@csrf
+            {{-- BANK LIST --}}
+            @if ($wedding->banks->count())
+                <div class="max-w-xl mx-auto space-y-5">
 
-<input type="hidden" name="wedding_slug" value="{{ $wedding->slug }}">
+                    @foreach ($wedding->banks as $bank)
+                        @php
+                            $master = \App\Models\MasterBank::where('name', $bank->bank_name)->first();
+                            $logo = optional($master)->logo;
+                        @endphp
 
-<input type="text" name="name" placeholder="Nama" class="w-full p-2 mb-2 text-black">
+                        <div
+                            class="bg-gray-800 border border-gray-700 rounded-2xl p-5 flex items-center gap-4 shadow-lg">
 
-<select name="attendance"
-class="w-full p-2 mb-2 text-black">
-<option value="">Konfirmasi Kehadiran</option>
-<option value="hadir">Hadir</option>
-<option value="tidak_hadir">Tidak Hadir</option>
-</select>
+                            {{-- Logo --}}
+                            @if ($logo)
+                                <img src="{{ asset('storage/' . $logo) }}"
+                                    class="w-12 h-12 object-contain bg-white rounded-lg p-1">
+                            @endif
 
-<textarea name="message"
-placeholder="Ucapan"
-class="w-full p-2 mb-2 text-black"></textarea>
+                            {{-- Info rekening --}}
+                            <div class="flex-1 text-left">
+                                <p class="font-semibold text-yellow-400">
+                                    {{ $bank->bank_name }}
+                                </p>
 
-<button class="bg-yellow-400 text-black px-6 py-2 w-full">
-Kirim RSVP
-</button>
-</form>
+                                <p class="text-xl tracking-widest font-mono">
+                                    {{ $bank->account_number }}
+                                </p>
 
-</section>
+                                <p class="text-sm text-gray-400">
+                                    a.n {{ $bank->account_holder }}
+                                </p>
+                            </div>
 
-<!-- GUEST BOOK -->
-<section class="py-20 px-6 max-w-2xl mx-auto">
+                            {{-- Copy --}}
+                            <button onclick="copyText('{{ $bank->account_number }}')"
+                                class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg text-sm font-semibold">
+                                Copy
+                            </button>
 
-<h2 class="text-3xl text-yellow-400 text-center mb-8">
-Guest Messages
-</h2>
+                        </div>
+                    @endforeach
 
-@forelse($messages as $msg)
-<div class="glass p-4 mb-4 rounded">
-<p class="font-bold">{{ $msg->kolom1 }}</p>
-<p class="opacity-80">{{ $msg->message }}</p>
-</div>
-@empty
-<p class="text-center opacity-60">Belum ada ucapan</p>
-@endforelse
+                </div>
+            @endif
+        </div>
+    </section>
 
-</section>
 
-<script>
-function playMusic() {
-document.getElementById('bgmusic').play();
-}
-</script>
+    <!-- MAP -->
+    <section class="py-16 bg-gray-900 text-center">
+        <h2 class="text-3xl text-yellow-400 mb-6">Location</h2>
+
+        <div class="max-w-3xl mx-auto">
+            <iframe src="{{ $wedding->maps_link }}" width="100%" height="350" style="border:0;" allowfullscreen
+                loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="py-20 px-6 text-center">
+
+        <h2 class="text-3xl text-yellow-400 mb-6">RSVP</h2>
+
+        @if (session('success'))
+            <div class="bg-green-700 p-3 mb-4 rounded">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('rsvp.store') }}" class="max-w-md mx-auto">
+            @csrf
+            <input type="hidden" name="wedding_slug" value="{{ optional($wedding)->slug ?? '' }}">
+            <input type="text" name="name" placeholder="Name" class="w-full p-2 mb-2 text-black">
+            <input type="number" name="total_guest" placeholder="Number Of Guests" class="w-full p-2 mb-2 text-black">
+            <select name="attendance" class="w-full p-2 mb-2 text-black">
+                <option value="">Confirmation Of Attendance</option>
+                <option value="hadir">Present</option>
+                <option value="tidak_hadir">Not Present</option>
+            </select>
+
+            <textarea name="message" placeholder="Message" class="w-full p-2 mb-2 text-black"></textarea>
+
+            <button class="bg-yellow-400 text-black px-6 py-2 w-full">
+                Send RSVP
+            </button>
+        </form>
+
+    </section>
+
+    <!-- GUEST BOOK -->
+    <section class="py-20 bg-gray-900 px-6 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl text-yellow-400 text-center mb-8">
+                Guest Messages
+            </h2>
+
+            <div class="space-y-4 max-h-96 overflow-y-auto pr-2">
+                @forelse($messages as $msg)
+                    <div class="glass p-4 mb-4 rounded">
+                        <p class="font-bold">{{ $msg->kolom1 }}</p>
+                        <p class="opacity-80">{{ $msg->message }}</p>
+                    </div>
+                @empty
+                    <p class="text-center opacity-60">No Words Yet</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function playMusic() {
+            document.getElementById('bgmusic').play();
+        }
+
+        function copyText(text) {
+
+            if (navigator.clipboard && window.isSecureContext) {
+                // modern way
+                navigator.clipboard.writeText(text)
+                    .then(() => alert("Nomor rekening disalin!"))
+                    .catch(() => fallbackCopy(text));
+
+            } else {
+                // fallback
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            let textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("Nomor rekening disalin!");
+        }
+    </script>
 
 </body>
+
 </html>

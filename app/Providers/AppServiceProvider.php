@@ -27,27 +27,32 @@ class AppServiceProvider extends ServiceProvider
 
         // gunakan View Composer supaya Auth pasti tersedia
         View::composer('*', function ($view) {
-            $wedding = null;
 
-            try {
-                // cek tabel wedding ada & user login
-                if (Schema::hasTable('weddings') && Auth::check()) {
-                    $wedding = Wedding::firstOrCreate(
-                        ['kolom3' => Auth::id()],
-                        ['slug' => Str::slug(Auth::user()->name.'-'.Auth::id())]
-                    );
+        // kalau controller sudah kirim wedding → jangan sentuh
+        if ($view->offsetExists('wedding')) {
+            return;
+        }
 
-                    // kalau slug kosong, buat otomatis
-                    if (!$wedding->slug) {
-                        $wedding->slug = Str::slug(Auth::user()->name.'-'.$wedding->id);
-                        $wedding->save();
-                    }
+        $wedding = null;
+
+        try {
+            if (Schema::hasTable('weddings') && Auth::check()) {
+                $wedding = Wedding::firstOrCreate(
+                    ['kolom3' => Auth::id()],
+                    ['slug' => Str::slug(Auth::user()->name.'-'.Auth::id())]
+                );
+
+                if (!$wedding->slug) {
+                    $wedding->slug = Str::slug(Auth::user()->name.'-'.$wedding->id);
+                    $wedding->save();
                 }
-            } catch (\Throwable $e) {
-                $wedding = null;
             }
+        } catch (\Throwable $e) {
+            $wedding = null;
+        }
 
-            $view->with('wedding', $wedding);
-        });
+        $view->with('wedding', $wedding);
+    });
+
     }
 }

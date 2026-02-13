@@ -21,8 +21,9 @@ class AppServiceProvider extends ServiceProvider
     {
        
         // paksa HTTPS di production
-        if (app()->environment('production')) {
+       if (app()->environment('production')) {
             URL::forceScheme('https');
+            URL::forceRootUrl(config('app.url'));
         }
 
         // gunakan View Composer supaya Auth pasti tersedia

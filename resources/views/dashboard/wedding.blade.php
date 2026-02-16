@@ -134,8 +134,8 @@ class="w-40 mt-2 rounded shadow">
             <div class="option flex items-center p-2 cursor-pointer hover:bg-gray-100"
                 data-id="{{ $b->id }}"
                 data-name="{{ $b->name }}"
-                data-logo="{{ asset('storage/'.$b->logo) }}">
-                <img src="{{ asset('storage/'.$b->logo) }}"
+                data-logo="{{ asset('images/'.$b->logo) }}">
+                <img src="{{ asset('images/'.$b->logo) }}"
                      class="w-10 h-10 object-contain mr-2">
             </div>
             @endforeach
@@ -198,8 +198,8 @@ Save Wedding
                     <div class="option flex items-center p-2 cursor-pointer hover:bg-gray-100" 
                         data-id="{{ $bank->id }}" 
                         data-name="{{ $bank->name }}" 
-                        data-logo="{{ asset('storage/'.$bank->logo) }}">
-                        <img src="{{ asset('storage/'.$bank->logo) }}" class="w-10 h-10 object-contain mr-2">
+                        data-logo="{{ asset('images/'.$bank->logo) }}">
+                        <img src="{{ asset('images/'.$bank->logo) }}" class="w-10 h-10 object-contain mr-2">
                     </div>
                 @endforeach
             </div>

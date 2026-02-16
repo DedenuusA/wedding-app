@@ -48,7 +48,7 @@
 
     <audio id="bgmusic" loop>
         @if (optional($wedding)->music_url)
-            <source src="{{ asset('storage/' . $wedding->music_url) }}">
+            <source src="{{ asset('images/' . $wedding->music_url) }}">
         @endif
     </audio>
 
@@ -108,7 +108,7 @@
 
                 @foreach (json_decode(optional($wedding)->kolom2 ?? '[]') as $img)
                     <div class="overflow-hidden rounded-xl shadow-lg hover:scale-110 transition duration-500">
-                        <img src="{{ asset('storage/' . $img) }}" class="w-full h-40 object-cover">
+                        <img src="{{ asset('images/' . $img) }}" class="w-full h-40 object-cover">
                     </div>
                 @endforeach
 
@@ -128,7 +128,7 @@
             @if (optional($wedding)->kolom1)
                 <div class="bg-white p-6 rounded-2xl shadow mb-8">
                     <h2 class="text-2xl font-semibold mb-4 text-pink-600">QRIS</h2>
-                    <img src="{{ asset('storage/' . $wedding->kolom1) }}" class="w-44 mx-auto rounded-xl shadow">
+                    <img src="{{ asset('images/' . $wedding->kolom1) }}" class="w-44 mx-auto rounded-xl shadow">
                     <p class="text-sm text-gray-600 mt-2">Scan untuk memberikan hadiah</p>
                 </div>
             @endif
@@ -152,7 +152,7 @@
 
                                 {{-- Logo --}}
                                 @if ($logo)
-                                    <img src="{{ asset('storage/' . $logo) }}" class="w-12 h-12 object-contain">
+                                    <img src="{{ asset('images/' . $logo) }}" class="w-12 h-12 object-contain">
                                 @endif
 
                                 {{-- Info rekening --}}

@@ -28,7 +28,7 @@
     </button>
 
     <audio id="bgmusic" loop>
-        <source src="{{ asset('storage/' . $wedding->music_url) }}">
+        <source src="{{ asset('images/' . $wedding->music_url) }}">
     </audio>
 
     <!-- HERO -->
@@ -90,7 +90,7 @@
     <section class="py-16 bg-gray-900 text-center">
         <h2 class="text-3xl text-yellow-400 mb-10">Gallery</h2>
         @foreach (json_decode(optional($wedding)->kolom2 ?? '[]') as $img)
-            <img src="{{ asset('storage/' . $img) }}" class="w-32 inline-block m-1">
+            <img src="{{ asset('images/' . $img) }}" class="w-32 inline-block m-1">
         @endforeach
     </section>
 
@@ -104,7 +104,7 @@
         <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             @if (optional($wedding)->kolom1)
                 <div class="mb-10">
-                    <img src="{{ asset('storage/' . $wedding->kolom1) }}" class="w-32 mx-auto rounded-xl shadow-lg mb-3">
+                    <img src="{{ asset('images/' . $wedding->kolom1) }}" class="w-32 mx-auto rounded-xl shadow-lg mb-3">
                     <p class="text-gray-300">Scan QRIS To Give Gifts</p>
                 </div>
             @endif
@@ -125,7 +125,7 @@
 
                             {{-- Logo --}}
                             @if ($logo)
-                                <img src="{{ asset('storage/' . $logo) }}"
+                                <img src="{{ asset('images/' . $logo) }}"
                                     class="w-12 h-12 object-contain bg-white rounded-lg p-1">
                             @endif
 

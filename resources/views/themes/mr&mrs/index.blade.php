@@ -82,7 +82,7 @@
     @foreach($gallery as $i => $img)
     <div class="carousel-item {{ $i == 0 ? 'active' : '' }}">
 
-    <img src="{{ asset('storage/'.$img) }}"
+    <img src="{{ asset('images/'.$img) }}"
          class="d-block w-100"
          style="height: 100vh; object-fit: cover;"
          alt="Wedding Image">
@@ -231,7 +231,7 @@
 
             <div class="bg-white p-4 rounded shadow">
 
-                <img src="{{ asset('storage/'.$wedding->kolom1) }}"
+                <img src="{{ asset('images/'.$wedding->kolom1) }}"
                     class="img-fluid mb-3"
                     style="max-width: 260px;">
 
@@ -262,7 +262,7 @@
 
                 {{-- Logo --}}
                 @if($logo)
-                <img src="{{ asset('storage/'.$logo) }}"
+                <img src="{{ asset('images/'.$logo) }}"
                     style="width: 55px; height: 55px; object-fit: contain;"
                     class="bg-light rounded p-1">
                 @endif
@@ -345,13 +345,13 @@
 
                     <div class="gallery-img">
                         <img class="img-fluid w-100"
-                            src="{{ asset('storage/'.$img) }}"
+                            src="{{ asset('images/'.$img) }}"
                             alt="Wedding Photo">
 
                         <div class="hover-style"></div>
 
                         <div class="search-icon">
-                            <a href="{{ asset('storage/'.$img) }}"
+                            <a href="{{ asset('images/'.$img) }}"
                             data-lightbox="wedding-gallery"
                             class="my-auto">
                             <i class="fas fa-plus btn-primary p-3"></i>
@@ -491,7 +491,7 @@
 
 <audio id="bgmusic" loop>
 @if(optional($wedding)->music_url)
-<source src="{{ asset('storage/'.$wedding->music_url) }}">
+<source src="{{ asset('images/'.$wedding->music_url) }}">
 @endif
 </audio>
 

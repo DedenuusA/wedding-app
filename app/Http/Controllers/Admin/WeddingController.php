@@ -37,44 +37,89 @@ class WeddingController extends Controller
             'music' => 'nullable|file|mimes:mp3,wav,ogg',
         ]);
 
-        // upload music
-        if ($request->hasFile('music')) {
-            $path = $request->file('music')->store('music', 'public');
-            $data['music_url'] = $path;
-        }
-        // upload gallery
-        if ($request->hasFile('gallery')) {
-            $galleryPaths = [];
-
-            foreach ($request->file('gallery') as $photo) {
-                $galleryPaths[] = $photo->store('gallery', 'public');
-            }
-
-            $data['kolom2'] = json_encode($galleryPaths);
-        }
-        // upload qris
-        if ($request->hasFile('qris')) {
-            $data['kolom1'] = $request->file('qris')->store('qris', 'public');
-        }
-        $data['kolom3'] = Auth::check() ? Auth::id() : null;
-        // auto slug
-        $data['slug'] = Str::slug(
-            $data['bride_name'].'-'.$data['groom_name']
-        );
-        $wedding->update($data);
         
-        $wedding->banks()->delete();
-        if ($request->banks) {
-            foreach ($request->banks['name'] as $i => $name) {
-                if (!$name) continue;
-                $wedding->banks()->create([
-                    'bank_name' => $name,
-                    'account_number' => $request->banks['number'][$i] ?? '',
-                    'account_holder' => $request->banks['holder'][$i] ?? '',
-                ]);
+    // -----------------------------
+    // Upload Musik ke public/images/music
+    // -----------------------------
+    if ($request->hasFile('music')) {
+        // hapus file lama jika ada
+        if ($wedding->music_url && file_exists(public_path('images/'.$wedding->music_url))) {
+            unlink(public_path('images/'.$wedding->music_url));
+        }
+
+        $file = $request->file('music');
+        $filename = 'music/' . time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('images/music'), $file->getClientOriginalName());
+        $data['music_url'] = 'music/' . $file->getClientOriginalName();
+    }
+
+    // -----------------------------
+    // Upload Gallery ke public/images/gallery
+    // -----------------------------
+    if ($request->hasFile('gallery')) {
+        // hapus gallery lama jika ada
+        if ($wedding->kolom2) {
+            $oldGallery = json_decode($wedding->kolom2, true);
+            foreach ($oldGallery as $oldFile) {
+                if (file_exists(public_path('images/'.$oldFile))) {
+                    unlink(public_path('images/'.$oldFile));
+                }
             }
         }
 
+        $galleryPaths = [];
+        foreach ($request->file('gallery') as $photo) {
+            $folder = public_path('images/gallery');
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+            }
+            $filename = time().'_'.$photo->getClientOriginalName();
+            $photo->move($folder, $filename);
+            $galleryPaths[] = 'gallery/' . $filename;
+        }
+
+        $data['kolom2'] = json_encode($galleryPaths);
+    }
+
+    // -----------------------------
+    // Upload QRIS ke public/images/qris
+    // -----------------------------
+    if ($request->hasFile('qris')) {
+        // hapus file lama jika ada
+        if ($wedding->kolom1 && file_exists(public_path('images/'.$wedding->kolom1))) {
+            unlink(public_path('images/'.$wedding->kolom1));
+        }
+
+        $file = $request->file('qris');
+        $folder = public_path('images/qris');
+        if (!file_exists($folder)) mkdir($folder, 0777, true);
+        $filename = time().'_'.$file->getClientOriginalName();
+        $file->move($folder, $filename);
+        $data['kolom1'] = 'qris/'.$filename;
+    }
+
+    // -----------------------------
+    // Data tambahan
+    // -----------------------------
+    $data['kolom3'] = Auth::check() ? Auth::id() : null;
+    $data['slug'] = Str::slug($data['bride_name'].'-'.$data['groom_name']);
+
+    $wedding->update($data);
+
+    // -----------------------------
+    // Bank
+    // -----------------------------
+    $wedding->banks()->delete();
+    if ($request->banks) {
+        foreach ($request->banks['name'] as $i => $name) {
+            if (!$name) continue;
+            $wedding->banks()->create([
+                'bank_name' => $name,
+                'account_number' => $request->banks['number'][$i] ?? '',
+                'account_holder' => $request->banks['holder'][$i] ?? '',
+            ]);
+        }
+    }
         return back()->with('success', 'Wedding updated!');
     }
 }

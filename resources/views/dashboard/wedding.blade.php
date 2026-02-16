@@ -123,7 +123,7 @@ class="w-40 mt-2 rounded shadow">
 
     <div class="bank-select-wrapper relative w-64 mt-6">
         <div class="selected flex items-center border p-2 cursor-pointer">
-            <img src="{{ asset('storage/'.$bank->masterbank->logo ?? '') }}"
+            <img src="{{ asset('images/'.$bank->masterbank->logo ?? '') }}"
                  class="bank-logo w-10 h-10 object-contain mr-2"
                  style="display:block;">
             <span class="bank-name">{{ $bank->bank_name }}</span>

@@ -53,7 +53,7 @@
 
     <audio id="bgmusic" loop>
         @if (optional($wedding)->music_url)
-            <source src="{{ asset('storage/' . $wedding->music_url) }}">
+            <source src="{{ asset('images/' . $wedding->music_url) }}">
         @endif
     </audio>
 
@@ -63,7 +63,7 @@
 
         @if (!empty(json_decode(optional($wedding)->kolom2 ?? '[]')))
             @foreach (json_decode(optional($wedding)->kolom2 ?? '[]') as $key => $img)
-                <img src="{{ asset('storage/' . $img) }}"
+                <img src="{{ asset('images/' . $img) }}"
                     class="slide absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 {{ $key == 0 ? 'opacity-100' : 'opacity-0' }} bg-animate">
             @endforeach
         @endif
@@ -147,7 +147,7 @@
 
             <div class="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
                 @foreach (json_decode(optional($wedding)->kolom2 ?? '[]') as $img)
-                    <img src="{{ asset('storage/' . $img) }}" class="rounded-xl hover:scale-105 transition">
+                    <img src="{{ asset('images/' . $img) }}" class="rounded-xl hover:scale-105 transition">
                 @endforeach
             </div>
         </section>
@@ -165,7 +165,7 @@
             @if (optional($wedding)->kolom1)
                 <div class="text-center">
 
-                    <img src="{{ asset('storage/' . $wedding->kolom1) }}" class="w-64 mx-auto rounded-xl shadow mb-4">
+                    <img src="{{ asset('images/' . $wedding->kolom1) }}" class="w-64 mx-auto rounded-xl shadow mb-4">
 
                     <p class="opacity-80">
                         Scan QRIS To Give Gifts
@@ -187,7 +187,7 @@
                         <div class="bg-white rounded-xl p-5 shadow flex items-center gap-4">
 
                             @if ($logo)
-                                <img src="{{ asset('storage/' . $logo) }}"
+                                <img src="{{ asset('images/' . $logo) }}"
                                     class="w-12 h-12 object-contain bg-gray-100 rounded p-1">
                             @endif
 

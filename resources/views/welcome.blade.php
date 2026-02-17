@@ -51,7 +51,7 @@
                class="bg-rose-600 hover:bg-rose-700 px-8 py-4 rounded-full shadow-xl text-lg font-semibold transition animate-float">
                 Daftar Gratis Sekarang
             </a>
-            <a href="#preview" 
+            <a href="https://www.weddingapp.my.id/w/odet-lancelot" 
                class="border border-white hover:bg-white hover:text-black px-8 py-4 rounded-full text-lg transition">
                 Lihat Demo
             </a>

@@ -47,7 +47,8 @@
 <body class="bg-black text-white overflow-x-hidden">
 
     <!-- MUSIC BUTTON -->
-    <button onclick="toggleMusic()" class="fixed bottom-6 right-6 bg-white text-black p-4 rounded-full shadow-lg z-50">
+    <button onclick="playMusic()" class="fixed bottom-6 right-6 bg-white text-black p-4 rounded-full shadow-lg z-50"
+        id="musicBtn">
         🎵
     </button>
 
@@ -299,12 +300,16 @@
             }, 4000);
         }
 
-        function toggleMusic() {
+        function playMusic() {
             const music = document.getElementById('bgmusic');
+            const btn = document.getElementById('musicBtn');
+
             if (music.paused) {
                 music.play();
+                btn.innerHTML = "🔊";
             } else {
                 music.pause();
+                btn.innerHTML = "🎵";
             }
         }
 

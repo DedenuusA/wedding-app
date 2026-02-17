@@ -22,9 +22,9 @@
 <body class="bg-black text-white">
 
     <!-- MUSIC -->
-    <button onclick="playMusic()"
+    <button onclick="playMusic()" id="musicBtn"
         class="fixed bottom-6 right-6 bg-yellow-500 text-black px-4 py-3 rounded-full shadow-xl z-50">
-        ♪ Music
+        🎵
     </button>
 
     <audio id="bgmusic" loop>
@@ -104,7 +104,8 @@
         <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-start">
             @if (optional($wedding)->kolom1)
                 <div class="mb-10">
-                    <img src="{{ asset('images/' . $wedding->kolom1) }}" class="w-32 mx-auto rounded-xl shadow-lg mb-3">
+                    <img src="{{ asset('images/' . $wedding->kolom1) }}"
+                        class="w-32 mx-auto rounded-xl shadow-lg mb-3">
                     <p class="text-gray-300">Scan QRIS To Give Gifts</p>
                 </div>
             @endif
@@ -223,7 +224,16 @@
 
     <script>
         function playMusic() {
-            document.getElementById('bgmusic').play();
+            const music = document.getElementById('bgmusic');
+            const btn = document.getElementById('musicBtn');
+
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "🔊";
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵";
+            }
         }
 
         function copyText(text) {

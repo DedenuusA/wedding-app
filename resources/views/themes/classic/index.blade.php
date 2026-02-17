@@ -41,7 +41,7 @@
 <body class="bg-pink-50 text-gray-800">
 
     <!-- tombol musik -->
-    <button onclick="playMusic()"
+    <button onclick="playMusic()" id="musicBtn"
         class="fixed bottom-4 right-4 bg-pink-500 text-white p-4 rounded-full shadow-xl hover:bg-pink-600 transition float z-50">
         🎵
     </button>
@@ -236,9 +236,16 @@
 
     <script>
         function playMusic() {
-            var music = document.getElementById('bgmusic');
-            if (music.paused) music.play();
-            else music.pause();
+            const music = document.getElementById('bgmusic');
+            const btn = document.getElementById('musicBtn');
+
+            if (music.paused) {
+                music.play();
+                btn.innerHTML = "🔊";
+            } else {
+                music.pause();
+                btn.innerHTML = "🎵";
+            }
         }
 
         function copyText(text) {

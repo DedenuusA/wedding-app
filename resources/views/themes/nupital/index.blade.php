@@ -145,7 +145,7 @@
                             </div>
 
                             <div class="col-md-5 col-sm-5 col-xs-5 nopadding">
-                                <h3>{{ optional($wedding)->groom_name }}</h3>
+                                <h3>Putri dari{{ optional($wedding)->groom_name }}</h3>
                                 <p>Putra dari {{ optional($wedding)->groom_parent }}</p>
                             </div>
 

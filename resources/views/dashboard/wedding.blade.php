@@ -66,6 +66,9 @@
                 <option value="nupital" {{ optional($wedding)->theme == 'nupital' ? 'selected' : '' }}>
                     Nupital
                 </option>
+                <option value="wed" {{ optional($wedding)->theme == 'wed' ? 'selected' : '' }}>
+                    Wed
+                </option>
             </select>
 
             <div class="mt-6">

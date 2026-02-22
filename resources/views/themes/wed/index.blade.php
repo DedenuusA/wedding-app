@@ -175,22 +175,9 @@
                         <div class="section-tittle mb-70">
                             <h2>Our Love Story​</h2>
                             <img src="{{ asset('wed/assets/img/gallery/tittle_img.png') }}" alt="">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 d-flex justify-content-center">
-                        <div class="story-caption background-img mb-40 text-center"
-                            style="background-image: url({{ asset('wed/assets/img/gallery/story2.jpg') }});">
-
-                            <div class="story-details d-flex align-items-center justify-content-center"
-                                style="min-height: 300px;">
-                                @if (optional($wedding)->story)
-                                    <p class="story1 m-0">{{ $wedding->story }}</p>
-                                @endif
-                            </div>
-
+                            @if (optional($wedding)->story)
+                                <p class="story1 m-0">{{ $wedding->story }}</p>
+                            @endif
                         </div>
                     </div>
                 </div>

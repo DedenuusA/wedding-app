@@ -340,8 +340,8 @@
 
                         <h4 class="mb-30">Scan QRIS To Give Gifts</h4>
 
-                        @if (optional($wedding)->kolom1)
-                            <img src="{{ asset('images/' . $wedding->kolom1) }}" class="img-fluid rounded shadow"
+                        @if (!empty($wedding->kolom1))
+                            <img src="{{ cloudinary()->getUrl($wedding->kolom1) }}" class="img-fluid rounded shadow"
                                 style="max-width:300px;">
                         @endif
 
